@@ -1,11 +1,11 @@
-FROM buildpack-deps:stretch
+FROM ubuntu:19.04
 
-MAINTAINER Sergei O. Udalov <sergei.udalov@gmail.com>
+MAINTAINER Nik Parotikov <nik.parotikov@gmail.com>
 
 RUN apt-get update
-RUN apt-get install -y -qq git cmake g++ libfuse-dev libcurl4-gnutls-dev libjsoncpp-dev glusterfs-client
+RUN apt-get install -y -qq software-properties-common git cmake g++ libfuse3-dev libcurl4-openssl-dev libjsoncpp-dev dh-make fuse3
 
-ENV MARCFS_REVISION=44404557fe50b50d77bd1b3b942aaa1ddf5156b7
+ENV MARCFS_REVISION=b0fed9aaee3e046b52d1e0d4ed5ef5d16726cc15
 
 RUN git clone https://gitlab.com/Kanedias/MARC-FS.git /usr/local/src/marc-fs && \
       cd /usr/local/src/marc-fs && git checkout $MARCFS_REVISION && \
