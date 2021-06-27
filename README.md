@@ -1,7 +1,7 @@
 # Cloud Mail.ru in a Docker
 
-[![Docker Build Status](https://img.shields.io/docker/build/udalov/cloud-mail-ru-docker.svg)](https://hub.docker.com/r/udalov/cloud-mail-ru-docker/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/udalov/cloud-mail-ru-docker.svg)](https://hub.docker.com/r/udalov/cloud-mail-ru-docker)
+[![Docker Build Status](https://img.shields.io/docker/build/parotikov/cloud-mail-ru-docker.svg)](https://hub.docker.com/r/parotikov/cloud-mail-ru-docker/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/parotikov/cloud-mail-ru-docker.svg)](https://hub.docker.com/r/parotikov/cloud-mail-ru-docker)
 
 
 With this image you can mount cloud.mail.ru as a FUSE path. [MARC-FS](https://gitlab.com/Kanedias/MARC-FS.git) is used under the hood. Without GUI login, VNC and so on.
@@ -27,12 +27,14 @@ Configure CI to upload builds or write backup scripts with cloud.mail.ru storage
 
 ```bash
 $ echo "Hello Mail.ru" > hello.txt
-$ docker run -v "$PWD":/local_drive -e MAILRU_LOGIN=my.email@mail.ru -e MAILRU_PASSWORD=secret123 --rm --privileged udalov/cloud-mail-ru-docker:0.1.1 cp /local_drive/hello.txt /tmp/mailru/hello.txt
+$ docker run -v "$PWD":/local_drive -e MAILRU_LOGIN=my.email@mail.ru -e MAILRU_PASSWORD=secret123 --rm --privileged parotikov/cloud-mail-ru-docker:1.1 cp /local_drive/hello.txt /tmp/mailru/hello.txt
 ```
 
-## Demo
+## Build
+docker build --rm -t parotikov/cloud-mail-ru-docker:1.1 .
 
-[![asciicast](https://asciinema.org/a/KYOJc3j2soDZ6IGXg3LoAqxd4.png)](https://asciinema.org/a/KYOJc3j2soDZ6IGXg3LoAqxd4)
+## Usage
+/bin/bash /root/copy_to_mailru_cloud.sh /home/backup file.tar cloud_dir
 
 ## Why?
 

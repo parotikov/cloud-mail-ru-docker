@@ -1,11 +1,15 @@
-FROM ubuntu:19.04
+
+FROM ubuntu:20.04
 
 MAINTAINER Nik Parotikov <nik.parotikov@gmail.com>
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Moscow
 
 RUN apt-get update
 RUN apt-get install -y -qq software-properties-common git cmake g++ libfuse3-dev libcurl4-openssl-dev libjsoncpp-dev dh-make fuse3
 
-ENV MARCFS_REVISION=b0fed9aaee3e046b52d1e0d4ed5ef5d16726cc15
+ENV MARCFS_REVISION=7df8259cdfd3133f159488a2ee9805c8096b2c18
 
 RUN git clone https://gitlab.com/Kanedias/MARC-FS.git /usr/local/src/marc-fs && \
       cd /usr/local/src/marc-fs && git checkout $MARCFS_REVISION && \
